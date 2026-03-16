@@ -13,7 +13,7 @@
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![JWT](https://img.shields.io/badge/JWT-Auth-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
 
-[Features](#-features) · [Architecture](#-architecture) · [Security](#-security) · [Getting Started](#-getting-started) · [API Reference](#-api-reference) · [Screenshots](#-screenshots)
+[Overview](#-overview) · [Screenshots](#-screenshots) · [Features](#-features) · [Architecture](#-architecture) · [Security](#-security) · [Getting Started](#-getting-started) · [API Reference](#-api-reference)
 
 </div>
 
@@ -26,6 +26,35 @@ Student Connect is a full-stack automation bridge that eliminates the fragmented
 The core engineering challenge: Canvas, Todoist, and Notion each use entirely different API schemas, date formats, and polling models. Student Connect solves this with a custom **fuzzy datetime normalization engine** and **APScheduler-backed background sync**, achieving near-perfect synchronization accuracy.
 
 > Built as a personal productivity tool — turned into a full production-grade application.
+
+---
+
+## 📸 Screenshots
+
+### Landing Page
+> Animated particle background with glassmorphism cards — live orbital ring effect and full page scroll
+
+![Landing Page](docs/screenshots/landing-preview.gif)
+
+### Dashboard
+> Three-panel layout — live service connections, sync history, and auto-sync scheduler all in one view
+
+![Dashboard](docs/screenshots/dashboard.png)
+
+### Sync Complete
+> Real-time result dialog after a Canvas → Todoist sync — 12 assignments added, 5 due dates updated
+
+![Sync Complete](docs/screenshots/sync-complete.png)
+
+### Login
+> Passwordless authentication — users verify via email code, no password ever stored
+
+![Login](docs/screenshots/login.png)
+
+### Register
+> New user registration — name and email are RSA-encrypted in the browser before the request is sent
+
+![Register](docs/screenshots/register.png)
 
 ---
 
@@ -96,6 +125,8 @@ Background sync jobs are stored in MongoDB via APScheduler's `MongoDBJobStore`, 
 **State-Comparison Algorithm**
 Rather than blindly overwriting, the sync engine diffs the Canvas assignment list against the existing Todoist/Notion state. New tasks are added. Tasks where the due date has changed are archived/deleted and re-created with the updated date. Unchanged tasks are left untouched — zero unnecessary API calls.
 
+For a full technical breakdown, see [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ---
 
 ## 🔒 Security
@@ -108,7 +139,7 @@ Security was a first-class design concern throughout this project.
 Client (Browser)                          Server
 ─────────────────                         ──────────────────────────────────
 1. Fetch RSA public key      ──────────►  Serve public_key.pem
-2. Encrypt API token         
+2. Encrypt API token
    with RSA-OAEP + SHA-256   ──────────►  Receive ciphertext hex string
 3. Send encrypted payload                 3. Decrypt with private_key.pem
                                              (password-protected, PKCS8)
@@ -175,7 +206,7 @@ Client (Browser)                          Server
 
 ```bash
 git clone https://github.com/riyonp23/Student_Connect.git
-cd student-connect
+cd Student_Connect
 ```
 
 ### 2. Backend Setup
@@ -231,7 +262,7 @@ Create a `.env` file in the `backend/` directory using `.env.example` as a templ
 MONGO_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/
 
 # Email service (for sync notifications)
-EMAIL_USER=your_email@gmail.com
+EMAIL=your_email@gmail.com
 EMAIL_PASS=your_gmail_app_password
 
 # Todoist OAuth
@@ -247,16 +278,16 @@ NOTION_CLIENT_SECRET=your_notion_client_secret
 # PRIVATE_PASS=
 ```
 
-> **Note:** `JWT_SECRET_KEY` and `PRIVATE_PASS` are auto-generated on first run and appended to `.env` automatically. RSA key pairs are also generated automatically on first run if `private_key.pem` does not exist.
+> **Note:** `JWT_SECRET_KEY` and `PRIVATE_PASS` are auto-generated on first run and appended to `.env` automatically. RSA key pairs are also generated on first run if `private_key.pem` does not exist.
 
 ---
 
 ## 📁 Project Structure
 
 ```
-student-connect/
+Student_Connect/
 ├── backend/
-│   ├── app.py                  # Flask app, routes, JWT config
+│   ├── app.py                  # Flask app, all routes, JWT config
 │   ├── requirements.txt
 │   ├── .env.example            # Template — never commit .env
 │   └── src/
@@ -289,10 +320,12 @@ student-connect/
 │           └── Shared/
 │               └── ParticleBackground.jsx
 │
+├── docs/
+│   └── screenshots/            # App screenshots
+├── ARCHITECTURE.md             # Extended technical deep dive
 ├── .gitignore
-├── README.md
-└── docs/
-    └── ARCHITECTURE.md         # Extended technical deep dive
+├── LICENSE
+└── README.md
 ```
 
 ---
@@ -320,24 +353,6 @@ student-connect/
 
 ---
 
-## 📸 Screenshots
-
-> *Screenshots coming soon — demo video in production.*
-
-<!-- To add screenshots, place images in docs/screenshots/ and uncomment below -->
-<!--
-### Dashboard
-![Dashboard](docs/screenshots/dashboard.png)
-
-### Sync in Action
-![Sync](docs/screenshots/sync.png)
-
-### Settings & Integrations
-![Settings](docs/screenshots/settings.png)
--->
-
----
-
 ## 🗺️ Roadmap
 
 - [ ] Deploy to cloud (Railway + Vercel)
@@ -350,7 +365,7 @@ student-connect/
 
 ## 👤 Author
 
-**Riyon** — Computer Science Student, Class of 2027
+**Riyon Praveen** — Computer Science Student, Class of 2027
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin)](https://linkedin.com/in/riyonpraveen)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat&logo=github)](https://github.com/riyonp23)
