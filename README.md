@@ -1,6 +1,6 @@
 <div align="center">
 
-![Student Connect Banner](docs/banner.svg?v=3)
+![Student Connect Banner](docs/banner.svg?v=4)
 
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
