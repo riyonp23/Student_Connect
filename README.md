@@ -174,7 +174,7 @@ Client (Browser)                          Server
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/riyonp23/student-connect.git
+git clone https://github.com/riyonp23/Student_Connect.git
 cd student-connect
 ```
 
