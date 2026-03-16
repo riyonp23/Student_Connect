@@ -1,10 +1,6 @@
 <div align="center">
 
-<img src="frontend/src/Components/assets/iconSCF.png" alt="Student Connect Logo" width="120"/>
-
-# Student Connect
-
-### Automate your academic workflow. Connect Canvas, Todoist, and Notion — seamlessly.
+![Student Connect Banner](docs/banner.svg)
 
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
